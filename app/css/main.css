@@ -1,22 +1,10 @@
-
-
 /* ==========================================================================
-   Author's custom styles
+   John McCaul custom styles
    ========================================================================== */
+.ng-invalid.ng-dirty{
+   border-color: #FA787E;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.ng-valid.ng-dirty{
+   border-color: #78FA89;
+}

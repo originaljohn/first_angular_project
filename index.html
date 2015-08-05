@@ -98,22 +98,23 @@
             <div class="col-md-3" ng-repeat="prev_contacts in contactCtrl.allcontacts">
                 <h2>{{prev_contacts.name}}</h2>
                 {{prev_contacts.body}}
-                <p>--{{prev_contacts.email}}</p>
+                <p>--{{prev_contacts.email}} on {{prev_contacts.createdOn | date:'d MM yyyy'}}</p>
             </div>
 
             <div class="col-md-4">
                 <h2>Contact Us</h2>
                 <p>We want to hear from you!</p>
-                <form name="contactUs" ng-submit="contactCtrl.addContact(contactCtrl.allcontacts)">
+                <form name="contactUs" ng-submit="contactUs.$valid && contactCtrl.addContact(contactCtrl.allcontacts)" novalidate>
                     <blockquote>
                         <b>Your Name: {{contactCtrl.contact.name}}</b>
                         <b>Your Email: {{contactCtrl.contact.email}}</b>
                         {{contactCtrl.contact.body}}
                     </blockquote>
                     <div class="form-group">
-                        <input class="form-control" type="text" ng-model="contactCtrl.contact.name" placeholder="Name" />
-                        <input class="form-control" type="email" ng-model="contactCtrl.contact.email" placeholder="your.email@address.com" />
-                        <textarea class="form-control" rows="3" ng-model="contactCtrl.contact.body" placeholder="Your enquiry here"></textarea>
+                        <input class="form-control" type="text" ng-model="contactCtrl.contact.name" placeholder="Name" required />
+                        <input class="form-control" type="email" ng-model="contactCtrl.contact.email" placeholder="your.email@address.com" required />
+                        <textarea class="form-control" rows="3" ng-model="contactCtrl.contact.body" placeholder="Your enquiry here" required ></textarea>
+                        <div>contactUs is {{contactUs.$valid}}</div>
                         <input type="submit" class="btn btn-success btn-block" value="Submit Form" />
                     </div>
                 </form>

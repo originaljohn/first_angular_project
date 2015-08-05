@@ -24,6 +24,7 @@
         this.contact = {};
         this.allcontacts = contacts;
         this.addContact = function(contacts){
+            this.contact.createdOn = Date.now();
             contacts.push(this.contact);
             this.contact = {};
         };
