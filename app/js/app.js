@@ -1,24 +1,65 @@
 /**
  * Created by John on 28/07/2015.
  */
-var app = angular.module("app",['ngRoute']).config(function($routeProvider){
-    $routeProvider.when('/home.html', {
-        templateUrl: 'index.html',
-        controller: 'HomeController'
+(function(){
+    var app = angular.module('app', []);
+
+    app.controller('PageController', function(){
+        this.contents = columns;
     });
 
-    $routeProvider.when('/login.html',{
-        templateUrl: 'login.html',
-        controller: 'LoginController'
+    app.controller('PanelController', function(){
+        this.tab = 1;
+
+        this.selectedTab = function(setTab){
+            this.tab = setTab;
+        };
+
+        this.isSelected = function(checkTab){
+            return this.tab === checkTab;
+        };
     });
 
-    $routeProvider.otherwise({ redirectTo: '/login' });
-});
+    app.controller('ContactController', function(){
+        this.contact = {};
+        this.allcontacts = contacts;
+        this.addContact = function(contacts){
+            contacts.push(this.contact);
+            this.contact = {};
+        };
+    });
 
-app.controller('LoginController', function(){
-    console.log('loading login controller');
-});
+    var columns = [
+        {
+            name: 'Heading',
+            description: 'Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.',
+            url_link: 'View Details',
+            has_link: false,
+        },
+        {
+            name: 'Heading',
+            description: 'Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.',
+            url_link: 'View Details',
+            has_link: true,
+        },
+        {
+            name: 'Heading',
+            description: 'Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.',
+            url_link: 'View Details',
+            has_link: true,
+        }
+    ];
 
-app.controller('HomeController', function(){
-    console.log('loading home controller');
-});
+    var contacts = [
+        {
+            name: 'Dave',
+            email: 'dave@4guysandazombie.com',
+            body: 'devphase is awesome!',
+        },
+        {
+            name: '8run0',
+            email: '8run0@z3r0.space',
+            body: 'Devphase rocks',
+        }
+    ]
+})();
